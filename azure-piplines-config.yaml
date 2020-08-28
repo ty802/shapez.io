@@ -1,0 +1,53 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - dev1
+  
+pool:
+    vmImage: 'windows-latest'
+  
+steps:
+  - task: PowerShell@2
+    inputs:
+      filePath: 'makebin.ps1'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+  - task: YarnInstaller@3
+    inputs:
+      versionSpec: '1.x'
+      checkLatest: true
+  - task: Yarn@3
+    inputs: 
+     arguments: ''
+  - task: Yarn@3
+    inputs:
+      projectDirectory: 'gulp/'
+      arguments: ''     
+  - task: Yarn@3
+    inputs:
+      projectDirectory: 'electron/'
+      arguments: ''
+  - task: gulp@0
+    inputs:
+      gulpFile: 'gulp/gulpfile.js'
+      targets: 'ky.buildstandalone'
+      workingDirectory: 'gulp/'
+      gulpjs: 'gulp/node_modules/gulp/bin/gulp.js'
+      enableCodeCoverage: false
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: 'tmp_standalone_files'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'

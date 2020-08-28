@@ -31,7 +31,7 @@ export class Savegame extends ReadWriteProxy {
      * @param {SavegameMetadata} param0.metaDataRef Handle to the meta data
      */
     constructor(app, { internalId, metaDataRef }) {
-        super(app, "savegame-" + internalId + ".bin");
+        super(app, "../dev/"+"savegame-" + internalId + ".bin");
         this.internalId = internalId;
         this.metaDataRef = metaDataRef;
 

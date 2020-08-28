@@ -20,7 +20,7 @@ export const enumLocalSavegameStatus = {
 
 export class SavegameManager extends ReadWriteProxy {
     constructor(app) {
-        super(app, "savegames.bin");
+        super(app, "../dev/savegames.bin");
 
         this.currentData = this.getDefaultData();
     }

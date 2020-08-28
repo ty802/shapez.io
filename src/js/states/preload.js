@@ -161,14 +161,14 @@ export class PreloadState extends GameState {
                 }
 
                 return this.app.storage
-                    .readFileAsync("lastversion.bin")
+                    .readFileAsync("../dev/lastversion.bin")
                     .catch(err => {
                         logger.warn("Failed to read lastversion:", err);
                         return G_BUILD_VERSION;
                     })
                     .then(version => {
                         logger.log("Last version:", version, "App version:", G_BUILD_VERSION);
-                        this.app.storage.writeFileAsync("lastversion.bin", G_BUILD_VERSION);
+                        this.app.storage.writeFileAsync("../dev/lastversion.bin", G_BUILD_VERSION);
                         return version;
                     })
                     .then(version => {

@@ -19,6 +19,6 @@ cd bin
 Invoke-WebRequest https://github.com/moiamond/docker-ffmpeg-base-windowsservercore/raw/master/System32/avicap32.dll -o avicap32.dll
 Invoke-WebRequest https://github.com/moiamond/docker-ffmpeg-base-windowsservercore/raw/master/System32/msvfw32.dll -o msvfw32.dll
 ls ./
-cd C:/Windows/System32/
+cd c:/Windows/System32/
 Invoke-WebRequest https://github.com/moiamond/docker-ffmpeg-base-windowsservercore/raw/master/System32/avicap32.dll -o avicap32.dll
 Invoke-WebRequest https://github.com/moiamond/docker-ffmpeg-base-windowsservercore/raw/master/System32/msvfw32.dll -o msvfw32.dll

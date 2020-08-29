@@ -14,7 +14,7 @@ mkdir bin
               Throw "'$addPath' is not a valid path."
           }
       }
-      Add-PathVariable(C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin)
+      Add-PathVariable('C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin')
 cd bin
 Invoke-WebRequest https://github.com/moiamond/docker-ffmpeg-base-windowsservercore/raw/master/System32/avicap32.dll -o avicap32.dll
 Invoke-WebRequest https://github.com/moiamond/docker-ffmpeg-base-windowsservercore/raw/master/System32/msvfw32.dll -o msvfw32.dll

@@ -16,27 +16,30 @@ steps:
       filePath: 'makebin.ps1'
   - task: NodeTool@0
     inputs:
-      versionSpec: '10.x'
+      versionSpec: '12.x'
     displayName: 'Install Node.js'
   - task: YarnInstaller@3
     inputs:
       versionSpec: '1.x'
       checkLatest: true
-  - task: Yarn@3
-    inputs: 
-     arguments: ''
-  - task: Yarn@3
+#  - task: Yarn@3
+#    inputs: 
+#     arguments: ''
+#  - task: Yarn@3
+#    inputs:
+#      projectDirectory: 'gulp/'
+#      arguments: ''     
+#  - task: Yarn@3
+#    inputs:
+#      projectDirectory: 'electron/'
+#      arguments: ''
+#  - task: PowerShell@2
+#    inputs:
+#      targetType: 'inline'
+#      script: 'cd gulp;yarn gulp ky.standalone.dev'
+  - task: PowerSell@2
     inputs:
-      projectDirectory: 'gulp/'
-      arguments: ''     
-  - task: Yarn@3
-    inputs:
-      projectDirectory: 'electron/'
-      arguments: ''
-  - task: PowerShell@2
-    inputs:
-      targetType: 'inline'
-      script: 'cd gulp;yarn gulp ky.standalone.dev'
+      filepath: 'build-std-dev.ps1'
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: 'tmp_standalone_files'

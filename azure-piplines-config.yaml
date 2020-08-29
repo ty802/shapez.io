@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-  - dev1
+  - builds
   
 pool:
     vmImage: 'windows-latest'
@@ -32,13 +32,10 @@ steps:
     inputs:
       projectDirectory: 'electron/'
       arguments: ''
-  - task: gulp@0
-    inputs:
-      gulpFile: 'gulp/gulpfile.js'
-      targets: 'ky.buildstandalone'
-      workingDirectory: 'gulp/'
-      gulpjs: 'gulp/node_modules/gulp/bin/gulp.js'
-      enableCodeCoverage: false
+  - task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'cd gulp;yarn gulp ky.standalone.dev'
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: 'tmp_standalone_files'
